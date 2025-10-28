@@ -1,0 +1,92 @@
+/* Sticky footer setup */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+
+  /* Background Image */
+  background: url("img2.webp") no-repeat center center fixed;
+  background-size: cover;
+  color: #0c0c0c;
+}
+
+/* Navigation bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(176, 102, 6, 0.6);
+  padding: 15px 30px;
+}
+
+nav .brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav .navlinks a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #040404;
+  font-weight: bold;
+}
+
+nav .navlinks a:hover {
+  color: #f5f2f0;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* LEFT side */
+  align-items: flex-end;       /* Bottom side */
+  padding: 50px;
+  text-align: left;
+}
+
+.hero h1 {
+  font-size: 70px;
+  font-weight: bold;
+  color: #0a0a0a;
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+/* Container */
+.container {
+  flex: 1; /* Content  */
+  width: 40%;
+  padding: 40px;
+  background: rgba(154, 121, 11, 0.15);
+  border-radius: 12px;
+  margin: 50px;
+  margin-right: auto;
+}
+
+/* Card Section */
+.card {
+  background: rgba(224, 157, 57, 0.6);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(174, 117, 12, 0.7);
+}
+/* about page*/
+
+/* 
+contact form */
+ /* Contact Form Styling */
+

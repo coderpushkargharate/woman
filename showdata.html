@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Submissions - Women Empowerment</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background: #b06606;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #b06606;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #b06606;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-data {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    /* Responsive Table */
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fff;
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        border-bottom: 1px solid #eee;
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #b06606;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Women Empowerment - Contact Data</header>
+
+  <div class="container">
+    <h2>All Submitted Contacts</h2>
+
+    <table id="contactsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="contactsBody">
+        <tr>
+          <td colspan="4" class="no-data">Loading contacts...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    async function loadContacts() {
+      const tbody = document.getElementById("contactsBody");
+      tbody.innerHTML = `<tr><td colspan="4" class="no-data">Loading contacts...</td></tr>`;
+
+      try {
+        // 🔥 Use your actual backend URL if deployed (example below)
+        const res = await fetch("http://localhost:5000/api/contacts");
+
+        if (!res.ok) throw new Error("Network error");
+
+        const contacts = await res.json();
+
+        if (contacts.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="4" class="no-data">No contacts found.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = "";
+        contacts.forEach(contact => {
+          const row = document.createElement("tr");
+
+          row.innerHTML = `
+            <td data-label="Name">${contact.name}</td>
+            <td data-label="Email">${contact.email}</td>
+            <td data-label="Message">${contact.message}</td>
+            <td data-label="Date">${new Date(contact.date).toLocaleString()}</td>
+          `;
+
+          tbody.appendChild(row);
+        });
+      } catch (err) {
+        console.error("Error loading contacts:", err);
+        tbody.innerHTML = `<tr><td colspan="4" class="no-data">Failed to load contacts.</td></tr>`;
+      }
+    }
+
+    loadContacts();
+  </script>
+</body>
+</html>
