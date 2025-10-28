@@ -115,9 +115,18 @@
       </section>
     </div>
 
-    <footer>© 2025 Women Empowerment Project
-      <a href="showdata.html"> showdata</a>
-    </footer>
+    <footer style="background-color:#f8f8f8; padding:15px 20px; border-top:1px solid #ddd;">
+  <div style="display:flex; justify-content:center; align-items:center; position:relative;">
+    <p style="margin:0; text-align:center; width:100%; color:#333; font-weight:500;">
+      © 2025 Women Empowerment Project
+    </p>
+    <a href="showdata.html" 
+       style="position:absolute; right:20px; color:#b06606; text-decoration:none; font-weight:600; transition:color 0.3s ease;">
+      Show Data
+    </a>
+  </div>
+</footer>
+
 
     <script>
       const form = document.getElementById("contactForm");
@@ -133,7 +142,7 @@
         };
 
         try {
-          const res = await fetch("http://localhost:5000/api/contact", {
+          const res = await fetch("https://woman-q2ce.onrender.com/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
